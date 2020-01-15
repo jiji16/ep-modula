@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Verdana, sans-serif; margin:0}
+* {box-sizing: border-box;}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+	
+	.top-right3 {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+ color: blue;
+background-color: white;
+		font-weight: 100 ;
+		
+		font-size: 14px ;
+}
+.top-right4 {
+  position: absolute;
+  top: 10px;
+  right: 138px;
+ color: blue;
+background-color: white;
+		font-weight: 100 ;
+		
+		font-size: 14px ;
+}
+	.top-right5 {
+  position: absolute;
+  top: 10px;
+  right: 350px;
+ color: blue;
+background-color: white;
+		font-weight: 100 ;
+		
+		font-size: 14px ;
+}	
+	.top-right6 {
+  position: absolute;
+  top: 10px;
+  right: 238px;
+ color: blue;
+background-color: white;
+		font-weight: 100 ;
+		
+		font-size: 14px ;
+}	
+	.top-right9 {
+  position: absolute;
+  top: 10px;
+  right: 238px;
+ color: blue;
+background-color: white;
+		font-weight: 100 ;
+		
+		font-size: 14px ;
+}	
+	
+	.top-right7 {
+  position: absolute;
+  top: 10px;
+  right: 350px;
+ color: blue;
+background-color: white;
+		font-weight: 100 ;
+		
+		font-size: 14px ;
+}	
+</style>
+</head>
+<body>
+<ul>
+                    <a href="acceuil.html ">
+                    <div class="top-right7">Home</div>  
+						</a>
+	
+	                <a href="conadmin.html ">
+                    <div class="top-right9"> Espace Admin</div>
+                           
+		                
+                       
+                    </a>
+            
+                     
+                    <a href="agences.html ">
+                    <div class="top-right4"> Nos Agences</div>
+                           
+		                
+                       
+                    </a>
+                
+            
+                
+                    <a href="formcontact.html">
+                    <div class="top-right3">Contactez Nous</div>
+                    </a>
+               
+            
+            
+       
+        
+    </ul>
+	
+	
+	
+<img src="logo.png" width="179" height="79" alt=""/>
+<h3>Formulaire de contact</h3>
+
+<div class="container">
+  <form action="msg.php">
+	  
+	 <label for="lname">Nom</label>
+    <input type="text" id="lname" name="lastname" placeholder="Ton Nom..">
+	  
+    <label for="fname">Prénom</label>
+    <input type="text" id="fname" name="firstname" placeholder="Ton prénom..">
+	 
+	  <label for="fname">Email</label>
+    <input type="text" id="lmail" name="lemail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" 
+       placeholder="nom@domaine.com">
+    
+    
+    <label for="subject">Subject</label>
+    <textarea id="subject" name="subject" style="height:200px"></textarea>
+	   
+	
+	 
+	  
+
+    <input type="submit" name="envoyer" id="envoyer" value="Envoyer"  />
+
+
+     </form>
+</div>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script>
+	
+	var xhr = null;
+	
+if (window.XMLHttpRequest || window.ActiveXObject) {
+	if (window.ActiveXObject) {
+		try {
+			xhr = new ActiveXObject("Msxml2.XMLHTTP");
+		} catch(e) {
+			xhr = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+	} else {
+		xhr = new XMLHttpRequest(); 
+	}
+} else {
+	alert("Votre navigateur ne supporte pas l'objet XMLHTTPRequest...");
+	return;
+}
+
+
+
+
+function getXMLHttpRequest() {
+	var xhr = null;
+	
+	if (window.XMLHttpRequest || window.ActiveXObject) {
+		if (window.ActiveXObject) {
+			try {
+				xhr = new ActiveXObject("Msxml2.XMLHTTP");
+			} catch(e) {
+				xhr = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+		} else {
+			xhr = new XMLHttpRequest(); 
+		}
+	} else {
+		alert("Votre navigateur ne supporte pas l'objet XMLHTTPRequest...");
+		return null;
+	}
+	
+	return xhr;
+}
+
+var xhr = getXMLHttpRequest(); // Voyez la fonction getXMLHttpRequest() définie dans la partie précédente
+var lname = encodeURIComponent(lname),
+    fname= encodeURIComponent(fname),
+    lmail = encodeURIComponent(lmail),
+    subject = encodeURIComponent(subject);
+xhr.open("POST", "msg.xml", true);
+xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+xhr.send('lname=' + lname + 'fname=' + fname + 'lmail=' + lmail + 'subject=' + subject);
+
+xhr.onreadystatechange = function() {
+	if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+		alert("OK"); // C'est bon \o/
+	}
+};
+
+xhttp.open("GET", "msg.php", true);
+xhttp.send();
+
+
+
+	
+	
+	
+	
+	
+	
+	</script>
+
+
+ 
+
+
+</body>
+</html>
+
+            
+
+            

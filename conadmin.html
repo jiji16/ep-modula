@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+	
+	.top-right3 {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+ color: blue;
+background-color: white;
+		font-weight: 100 ;
+		
+		font-size: 14px ;
+}
+.top-right4 {
+  position: absolute;
+  top: 10px;
+  right: 138px;
+ color: blue;
+background-color: white;
+		font-weight: 100 ;
+		
+		font-size: 14px ;
+}	
+	.top-right9 {
+  position: absolute;
+  top: 10px;
+  right: 238px;
+ color: blue;
+background-color: white;
+		font-weight: 100 ;
+		
+		font-size: 14px ;
+}	
+body {font-family: Verdana, sans-serif; margin:0}
+* {box-sizing: border-box;}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+input[type=password] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+.top-right9 {
+  position: absolute;
+  top: 10px;
+  right: 238px;
+ color: blue;
+background-color: white;
+		font-weight: 100 ;
+		
+		font-size: 14px ;
+}	
+	
+	.top-right7 {
+  position: absolute;
+  top: 10px;
+  right: 350px;
+ color: blue;
+background-color: white;
+		font-weight: 100 ;
+		
+		font-size: 14px ;
+}	
+.container {
+  border-radius: 50px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+</head>
+<body>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<ul><a href="acceuil.html ">
+                    <div class="top-right7">Home</div>  
+						</a>
+	
+	                
+                     <a href="conadmin.html ">
+                    <div class="top-right9"> Espace Admin</div>
+                           
+		                
+                       
+                    </a>
+            
+                     
+                    <a href="agences.html ">
+                    <div class="top-right4"> Nos Agences</div>
+                           
+		                
+                       
+                    </a>
+                
+            
+                
+                    <a href="formcontact.html">
+                    <div class="top-right3">Contactez Nous</div>
+                    </a>
+               
+            
+            
+       
+        
+    </ul>
+	
+	<img src="logo.png" width="179" height="79" alt=""/>
+	<h3>Formulaire de connexion</h3>
+<div id="resultat" >
+       
+    </div>
+         
+ <div class="container">
+   <form>
+    <p>
+        Nom d'utilisateur : <input type="text" id="username" />
+        Mot de passe : <input type="password" id="password" />
+    </p>
+    </form>
+
+  <input type="submit" id="submit" value="Se connecter !" />
+
+	</div> 
+
+
+
+<script>
+ 
+$(document).ready(function(){
+ 
+    $("#submit").click(function(e){
+        e.preventDefault();
+ 
+        $.ajax({
+        url: 'conadmin.php',
+        type: 'POST',
+            data: { 
+            
+                username : $("#username").val().trim(),  // Nous récupérons la valeur de nos input que l'on fait passer 
+                password : $("#password").val().trim()
+            },
+          dataType: 'text'
+            .done(function(data) {
+        if (data == "Success") {
+          // Le membre est connecté. Ajoutons lui un message dans la page HTML.
+          $("#resultat").html("<p>Vous avez été connecté avec succès !</p>");
+        }
+        else if (data == "Failed") {
+          // Le membre n'a pas été connecté. (data vaut ici "failed")
+          $("#resultat").html("<p>Erreur lors de la connexion...</p>");
+        }
+        
+      })
+  });
+});
+</script>
+ 
+			   
+			   
+
+</body>
+</html>
+
